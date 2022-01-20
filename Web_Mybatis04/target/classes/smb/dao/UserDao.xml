@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="smb.dao.UserDao">
+    <resultMap id="userInfoMap" type="UserInfo" autoMapping="true">
+        <id column="uid" property="userId"></id>
+        <result column="username" property="username"></result>
+        <result column="sex" property="userSex"></result>
+        <result column="birthday" property="userBirthday"></result>
+        <result column="address" property="userAddress"></result>
+    </resultMap>
+    <select id="findAllUserInfo" resultMap="userInfoMap">
+        select * from t_user
+    </select>
+    <select id="findUserListByAddress" parameterType="string" resultType="user">
+        select *from t_user
+        <if test="address != null">
+            where address = #{address}
+        </if>
+    </select>
+    <select id="findUserListByAddressAndSex" parameterType="user" resultType="user">
+        select * from t_user
+       <where>
+           <if test="address != null">
+               and address=#{address}
+           </if>
+           <if test="sex != null">
+               and sex=#{sex}
+           </if>
+       </where>
+    </select>
+    <delete id="deleteById" parameterType="integer" >
+        delete from t_user
+        <foreach collection="list" item="id" separator="," open="where uid in(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

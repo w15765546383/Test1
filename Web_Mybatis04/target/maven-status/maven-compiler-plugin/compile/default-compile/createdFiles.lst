@@ -1,0 +1,4 @@
+smb\dao\UserDao.class
+smb\utils\SqlSessionFactoryUtil.class
+smb\pojo\User.class
+smb\pojo\UserInfo.class

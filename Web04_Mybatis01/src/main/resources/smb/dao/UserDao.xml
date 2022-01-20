@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper根标签:一个映射配置文件,对应一个dao接口-->
+<!--namespace对应的就是dao接口的全路径名-->
+<mapper namespace="smb.dao.UserDao">
+    <!--
+        子标签:对应的就是dao接口中的每一个方法:
+        select:对应的就是查询方法
+        id:对应的方法名
+        resultType:就是封装的结果的类型,如果封装结果的类型是List就对应其泛型的类型
+        标签内容:就是要执行的sql语句
+    -->
+    <select id="findAll" resultType="smb.pojo.User">
+        select * from t_user;
+    </select>
+</mapper>
